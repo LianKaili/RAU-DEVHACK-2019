@@ -8,33 +8,18 @@
       function register() {
         let name = document.getElementById("uname").value;
         let psw = document.getElementById("pw").value;
-        var flag = false;
 
         if (name !== "" && psw !== "") {
-          jQuery.getJSON(
-            "https://direwolf.ro/danielcata/public/v1/utilizatori/search/?",
-            function(data) {
-              for (i in data.utilizatori) {
-                var utilizator = data.utilizatori[i].nume;
-                if (String(utilizator) === String(name)) {
-                  alert("Login Succesful!");
-                  document.cookie = `${name}`;
-                  location.href = "/html-files/cont.html";
-                  flag = true;
-                  break;
+            $.post(
+                "https://direwolf.ro/danielcata/public/v1/utilizatori/utilizator/",
+                {
+                name: `${name}`,
+                password: `${psw}`
                 }
-              }
-
-              if (flag === false) {
-                alert("You are not registered!");
-                let result = confirm("Do you want to create an account?")
-                if(result)
-                  location.href = "/html-files/index2.html" 
-              }
-                  
-                }
-              );
-        } 
+            ),
+            alert("Registration succesful!");
+            location.href = "/html-files/cont.html";
+        }
         else {
           alert("Empty fields!");
         }
@@ -60,7 +45,7 @@
       <form style="align-items: baseline" class="content">
         <!--Adauga imaginea-->
         <div class="imgcontainer">
-          <img src="/poze/users.png" alt="avatar" class="avatar" />
+          <img src="/poze/user.png" alt="avatar" class="avatar" />
         </div>
         <!--Adauga fereastra de logare-->
         <div class="container">
@@ -89,7 +74,7 @@
             style="height: 55px"
             type="submit"
           >
-            Login
+            Authenticate
           </button>
           <label>
             <input type="checkbox" checked="checked" name="rememeber" />Remember

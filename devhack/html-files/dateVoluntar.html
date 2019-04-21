@@ -4,28 +4,61 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="/css-files/register.css" />
     <title>Date Voluntar</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+      function register() {
+        let descriere = document.getElementById("description").value;
+        let id;
+
+        jQuery.getJSON(
+          "https://direwolf.ro/danielcata/public/v1/utilizatori/search/?",
+          function(data) {
+            for (i in data.utilizatori) {
+              var utilizator = data.utilizatori[i].nume;
+              if (
+                String(utilizator) === String(document.cookie.split(";")[0])
+              ) {
+                id = data.utilizatori[i].id_utilizator;
+                alert("am gasit!");
+                break;
+              }
+            }
+
+            jQuery.post(
+              "https://direwolf.ro/danielcata/public/v1/utilizatori/voluntar/",
+              {
+                id_utilizator: `${id}`,
+                descriere: `${descriere}`
+              },
+              alert("Succes!")
+            );
+          }
+        );
+      }
+    </script>
   </head>
   <body>
     <header></header>
     <main>
-      <div>
-        Datele tale personale
-        <br />
-        <div>
-          meniu
-          <hr />
-          <br />
-          <p>NUME</p>
-          <p>PRENUME</p>
-          <p>INFORMATII DESPRE EL</p>
-          <p>FISA MEDICALA</p>
-          <div>
-            <span>
-              <a href="/html-files/principal.html">Continuare</a>
-            </span>
-          </div>
-        </div>
+      <div class="container">
+        <h2>Enter your Volunteer data</h2>
+        <p>Please enter your personal details</p>
+        <hr />
+
+        <label for="description">
+          <strong>Description</strong>
+        </label>
+        <input id="description" type="text" placeholder="Describe yourself" required />
+
+        <p style="margin-top: 0px">
+          By creating an account you agree to our
+          <a href="#">Terms & Privacy</a>.
+        </p>
+        <button onclick="register(); return false;" type="submit" class="registerbtn">
+          Register
+        </button>
       </div>
     </main>
     <footer></footer>

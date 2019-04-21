@@ -1,37 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="/css-files/register.css" />
     <title>Date Membru</title>
-</head>
-<body>
-    <header>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link
+      href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-    </header>
-    <main>
-        <div>
-            Datele tale personale
-            <br/>
-            <div>
-                meniu
-                <hr/>
-                <br/>
-                <p>NUME</p>
-                <p>PRENUME</p>
-                <p>MONITORIZARE PACIENT</p>
-                <p>ID FISA MEDICALA</p>
-                <div>
-                    <span>
-                        <a href="/html-files/principal.html">Continuare</a>
-                    </span>
-                </div>
+    <style>
+      .list-group-item-primary {
+        color: rgb(255, 255, 255);
+        background-color: rgb(66, 139, 202);
+      }
+      .well .list-group {
+        margin-bottom: 10px auto;
+      }
+    </style>
+
+    <script>
+      function myscript() {
+        jQuery.getJSON(
+          "https://direwolf.ro/danielcata/public/v1/utilizatori/search/?",
+          function(data) {
+            let string;
+            for (i in data.utilizatori) {
+              var utilizator = data.utilizatori[i].nume;
+              jQuery("#check-list-box").append(
+                `<li style="color: blue; background-color: floralwhite; border-color: red;" class="list-group-item" data-color="success"><input type="checkbox"> ${utilizator}</li>`
+              );
+            }
+          }
+        );
+      }
+      window.onload = function() {
+        myscript();
+      };
+    </script>
+  </head>
+  <body>
+    <header></header>
+    <main class="container" style="margin-top:20px; width: 100%;">
+      <div class="container">
+        <h2>Select your pacient</h2>
+        <p>Please select the pacient you would like to monitorize</p>
+        <hr />
+
+        <div class="row">
+          <div class="col-xs-6">
+            <div style="background:skyblue; padding: 14px;" class="well" style="max-height: 300px;overflow: auto;">
+              <ul id="check-list-box" class="list-group checked-list-box"></ul>
             </div>
+          </div>
         </div>
-    </main>
-    <footer>
 
-    </footer>
-</body>
+        <p style="margin-top: 0px">
+          By creating an account you agree to our
+          <a href="#">Terms & Privacy</a>.
+        </p>
+        <button style="width:48.8%;" type="submit" class="registerbtn">
+          Register
+        </button>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
 </html>

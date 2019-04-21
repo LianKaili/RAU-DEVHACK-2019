@@ -5,35 +5,137 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Contul tau</title>
+
+    <script>
+      function move() {
+        if (document.getElementById("1").checked) {
+          let cookieName = document.cookie.split(";")[0]
+
+          alert(cookieName);
+          location.href = "/html-files/datePacient.html";
+        }
+        if (document.getElementById("2").checked)
+          location.href = "/html-files/dateVoluntar.html";
+        if (document.getElementById("3").checked)
+          location.href = "/html-files/dateMembru.html";
+      }
+    </script>
+
+    <style>
+      button:hover {
+        background-color: whitesmoke;
+        opacity: 0.9;
+        cursor: pointer;
+      }
+
+      .container {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      /* Hide the browser's default radio button */
+      .container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+      }
+
+      /* Create a custom radio button */
+      .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #eee;
+        border-radius: 50%;
+      }
+
+      /* On mouse-over, add a grey background color */
+      .container:hover input ~ .checkmark {
+        background-color: #ccc;
+      }
+
+      /* When the radio button is checked, add a blue background */
+      .container input:checked ~ .checkmark {
+        background-color: #2196f3;
+      }
+
+      /* Create the indicator (the dot/circle - hidden when not checked) */
+      .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+
+      /* Show the indicator (dot/circle) when checked */
+      .container input:checked ~ .checkmark:after {
+        display: block;
+      }
+
+      /* Style the indicator (dot/circle) */
+      .container .checkmark:after {
+        top: 9px;
+        left: 9px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: white;
+      }
+    </style>
   </head>
   <body>
     <header></header>
-    <main>
+    <main
+      style="border: 3px solid rgb(102, 224, 255); margin: 1.5px; padding: 12px; width: 50%;"
+    >
       <div>
-        <p>Container principal functionalitati</p>
         <div id="meniu-inregistrare">
           <p></p>
           <div id="user-data-new">
-            <p>SETEAZA IDENTITATEA</p>
+            <h1>Choose your status</h1>
             <hr />
-            <a href="/html-files/datePacient.html" id="pacient">##</a>
-            OPTIUNE PACIENT
+
+            <label class="container">
+              <input id="1" type="radio" name="radio" />
+              <span class="checkmark"></span>
+              <span>Optiune Pacient</span>
+            </label>
+
+            <label class="container">
+              <input id="2" type="radio" name="radio" />
+              <span class="checkmark"></span>
+              <span>Optiune Voluntar</span>
+            </label>
+            <label class="container">
+              <input id="3" type="radio" name="radio" />
+              <span class="checkmark"></span>
+              <span>Optiune Membru</span>
+            </label>
+
+            <label>
+              <button
+                onclick="move()"
+                style="background-color: rgb(118, 247, 122); padding: 10px 75px; border-radius: 15px; width: 100%"
+              >
+                Continue
+              </button>
+            </label>
+
             <br />
-            <a href="/html-files/dateVoluntar.html" id="voluntar">##</a>
-            OPTIUNE VOLUNTAR
-            <br />
-            <a href="/html-files/dateMembru.html" id="membru">##</a>
-            OPTIUNE MEMBRU
-            <br />
-            <div>
-              <span>
-                <a href="/html-files/principal.html">Continuare</a>
-              </span>
-            </div>
           </div>
         </div>
       </div>
-      <hr />
     </main>
     <footer></footer>
   </body>

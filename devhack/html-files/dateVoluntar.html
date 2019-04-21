@@ -8,10 +8,9 @@
     <title>Date Voluntar</title>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script>
+      var id = undefined;
       function register() {
         let descriere = document.getElementById("description").value;
-        let id;
-
         jQuery.getJSON(
           "https://direwolf.ro/danielcata/public/v1/utilizatori/search/?",
           function(data) {
@@ -37,6 +36,9 @@
           }
         );
       }
+      function getId() {
+        location.href = "https://direwolf.ro/danielcata/public/v1/frontend/listAlerts?userid="+id; 
+      }
     </script>
   </head>
   <body>
@@ -45,7 +47,7 @@
       <div class="container">
         <span >
             <button onclick="location.href='/html-files/cont.html'" style="margin: 0px 0px 0px 0px; width: 30%; height: 50%;; color: blanchedalmond; background-color: black" type="button">Get back!</button>
-            <button onclick="location.href='https://direwolf.ro/danielcata/public/v1/frontend/listAlerts'" style="margin: 0px 0px 0px 70px; width: 30%; height: 50%;; color: blanchedalmond; background-color: burlywood" type="button">
+            <button onclick="getId();return false;" style="margin: 0px 0px 0px 70px; width: 30%; height: 50%;; color: blanchedalmond; background-color: burlywood" type="button">
                 Start your job<br>Go Further!</button>
         </span>
         <h2>Enter your Volunteer data</h2>

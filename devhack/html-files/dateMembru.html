@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="/css-files/register.css" />
+    <link rel="stylesheet" href="/css-files/togglebtn.css" />
+    <link rel="stylesheet" href="/js-files/togglebtn.js" />
     <title>Date Membru</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link
@@ -23,6 +25,16 @@
       .well .list-group {
         margin-bottom: 10px auto;
       }
+
+      input[type=checkbox] {
+          width: 35px;
+          height: 35px;
+          margin-bottom: none;
+        }
+
+      #check-list-box {
+          text-align: justify;
+      }
     </style>
 
     <script>
@@ -32,9 +44,9 @@
           function(data) {
             let string;
             for (i in data.utilizatori) {
-              var utilizator = data.utilizatori[i].nume;
+              let utilizator = data.utilizatori[i].nume;
               jQuery("#check-list-box").append(
-                `<li style="color: blue; background-color: floralwhite; border-color: red;" class="list-group-item" data-color="success"><input type="checkbox"> ${utilizator}</li>`
+                `<li style="font-size: x-large; color: blue; background-color: floralwhite; border-color: blue;" class="list-group-item" data-color="success"><input type="checkbox"> ${utilizator}</li>`
               );
             }
           }
@@ -44,11 +56,30 @@
         myscript();
       };
     </script>
+    <script>
+        function boxchecked() {
+            // get reference to element containing toppings checkboxes
+            var el = document.getElementById('check-list-box');
+
+            // get reference to input elements in toppings container element
+            var tops = el.getElementsByTagName('input');
+
+            // assign function to onclick property of each checkbox
+            for (var i=0, len=tops.length; i<len; i++) {
+                if ( tops[i].type === 'checkbox' && tops[i].checked === true) {
+                        console.log(tops[i]);
+                    }
+                }
+        }
+    </script>
   </head>
   <body>
     <header></header>
     <main class="container" style="margin-top:20px; width: 100%;">
       <div class="container">
+        <span >
+             <button onclick="location.href='/html-files/cont.html'" style="margin: 0px 0px 0px 0px; width: 30%; height: 50%;; color: blanchedalmond; background-color: black" type="button">Get back!</button>
+        </span>
         <h2>Select your pacient</h2>
         <p>Please select the pacient you would like to monitorize</p>
         <hr />
@@ -65,7 +96,7 @@
           By creating an account you agree to our
           <a href="#">Terms & Privacy</a>.
         </p>
-        <button style="width:48.8%;" type="submit" class="registerbtn">
+        <button onclick="boxchecked(); return false;" style="width:48.8%;" type="submit" class="registerbtn">
           Register
         </button>
       </div>
